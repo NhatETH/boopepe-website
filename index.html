@@ -3,120 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOOPEPE</title>
+  <title>BOOPEPE - Meme to the Moon</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Comic Sans MS", cursive;
-      background: linear-gradient(to bottom, #121212, #1a1a1a);
-      color: white;
-      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(#f8f8f8, #fff);
+      overflow-x: hidden;
     }
     header {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 1rem;
     }
     header img {
       width: 120px;
       border-radius: 50%;
     }
-    .banner {
-      display: block;
-      max-width: 100%;
+    main {
+      padding: 1rem;
+      max-width: 800px;
       margin: auto;
+    }
+    .banner {
+      width: 100%;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
     }
     .info {
       text-align: center;
-      margin-top: 2rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
     .info a {
-      color: #00ffff;
+      color: #0077ff;
       text-decoration: none;
     }
-    .chase-zone {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
+    .steps {
+      background: #fffbe6;
+      padding: 1rem;
+      border-radius: 1rem;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .chaser, .runner {
-      position: absolute;
-      width: 80px;
-      transition: transform 0.1s linear;
-    }
-    .popup-meme {
+    .meme-chase {
       position: fixed;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background: white;
-      color: black;
-      padding: 2rem;
-      border-radius: 16px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      z-index: 10000;
+      left: 0;
+      z-index: 1000;
+      width: 80px;
+      animation: chase 10s linear infinite;
     }
-    .popup-meme.show {
-      transform: translate(-50%, -50%) scale(1);
+    .meme-run {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      z-index: 999;
+      width: 60px;
+      animation: run 10s linear infinite;
+    }
+    @keyframes chase {
+      0% { left: -100px; top: 40%; }
+      50% { left: 50vw; top: 45%; }
+      100% { left: 100vw; top: 50%; }
+    }
+    @keyframes run {
+      0% { left: -50px; top: 43%; }
+      50% { left: 48vw; top: 47%; }
+      100% { left: 95vw; top: 52%; }
+    }
+    .popup {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      font-size: 2rem;
+      display: none;
+      z-index: 2000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
   <header>
     <img src="avatar.png" alt="BOOPEPE Avatar" />
-    <h1>BOOPEPE</h1>
   </header>
-  <img class="banner" src="main-banner.png" alt="Main Banner" />
-  <div class="info">
-    <p><strong>CA:</strong> 0x1234567890abcdef1234567890abcdef12345678</p>
-    <p><a href="https://x.com/BOOPEPExyz" target="_blank">X</a> | <a href="https://t.me/boopepeportal" target="_blank">Telegram</a> | <a href="#">Docs</a></p>
-  </div>
-
-  <div class="chase-zone">
-    <img class="runner" src="peperun.png" alt="Pepe" id="pepe" />
-    <img class="chaser" src="poopepeeat.png" alt="Poopepe" id="poopepe" />
-  </div>
-
-  <div class="popup-meme" id="popup">BOOP! 🔊 Bonk!</div>
-  <audio id="bonk-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3a9d33d7e0.mp3"></audio>
+  <main>
+    <img src="main-banner.png" alt="BOOPEPE Banner" class="banner" />
+    <div class="info">
+      <p><strong>Contract Address (CA):</strong> 0x1234...boop</p>
+      <p><a href="https://x.com/BOOPEPExyz" target="_blank">X (Twitter)</a> | <a href="https://t.me/boopepeportal" target="_blank">Telegram</a> | <a href="#">Docs (coming soon)</a></p>
+    </div>
+    <div class="steps">
+      <h3>How to Join the Movement</h3>
+      <ol>
+        <li>Visit <a href="https://boop.fun">Boop.fun</a></li>
+        <li>Search “BOOPEPE” or paste CA above</li>
+        <li>Boop hard. Boop fast. Boop together!</li>
+      </ol>
+    </div>
+  </main>
+  <img src="poopepeeat.png" alt="BOOPEPE" class="meme-chase" id="chaser" />
+  <img src="peperun.png" alt="PEPE" class="meme-run" id="runner" />
+  <div class="popup" id="popup">BOOP!</div>
+  <audio id="bonkSound" src="bonk.mp3"></audio>
 
   <script>
-    const pepe = document.getElementById("pepe");
-    const poopepe = document.getElementById("poopepe");
-    const popup = document.getElementById("popup");
-    const sound = document.getElementById("bonk-sound");
+    const chaser = document.getElementById('chaser');
+    const runner = document.getElementById('runner');
+    const popup = document.getElementById('popup');
+    const sound = document.getElementById('bonkSound');
 
-    let x = 50;
-    let y = 50;
-    let direction = 1;
-
-    function moveChase() {
-      x += direction * 2;
-      if (x > window.innerWidth - 100 || x < 0) {
-        direction *= -1;
-        y = Math.random() * (window.innerHeight - 100);
+    function checkCollision() {
+      const chaseRect = chaser.getBoundingClientRect();
+      const runRect = runner.getBoundingClientRect();
+      const overlap = !(
+        chaseRect.right < runRect.left ||
+        chaseRect.left > runRect.right ||
+        chaseRect.bottom < runRect.top ||
+        chaseRect.top > runRect.bottom
+      );
+      if (overlap) {
+        popup.style.display = 'block';
+        sound.play();
+        setTimeout(() => popup.style.display = 'none', 1000);
       }
-
-      pepe.style.transform = `translate(${x}px, ${y}px)`;
-      poopepe.style.transform = `translate(${x - 60}px, ${y}px)`;
-
-      if (Math.abs(x - (x - 60)) < 10) triggerBonk();
-
-      requestAnimationFrame(moveChase);
     }
 
-    function triggerBonk() {
-      sound.play();
-      popup.classList.add("show");
-      setTimeout(() => popup.classList.remove("show"), 1000);
-    }
-
-    moveChase();
+    setInterval(checkCollision, 500);
   </script>
 </body>
 </html>
