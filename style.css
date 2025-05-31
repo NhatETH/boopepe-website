@@ -1,69 +1,77 @@
-body {
+* {
   margin: 0;
-  font-family: 'Comic Sans MS', sans-serif;
-  background: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
-  overflow-x: hidden;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1, h2, h3 {
-  text-align: center;
-  color: #222;
-}
-
-.banner {
+body, html {
   width: 100%;
-  max-width: 100%;
-  display: block;
-  margin: 20px auto;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow: auto;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  color: #fff;
+  text-align: center;
+}
+
+/* Video background */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Content styling */
+.content {
+  padding: 40px 20px;
 }
 
 .avatar {
-  width: 160px;
-  height: 160px;
+  width: 120px;
   border-radius: 50%;
-  display: block;
-  margin: 30px auto 20px;
-  border: 5px solid #fff;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
-.icon-area {
-  display: flex;
-  justify-content: center;
-  margin: 30px 0;
-  gap: 20px;
+.main-banner {
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 30px;
 }
 
-.icon-area img {
-  width: 50px;
-  animation: float 2s infinite ease-in-out;
+.info {
+  margin: 20px 0;
+  font-size: 18px;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
+.instructions {
+  margin-top: 40px;
+  font-size: 20px;
 }
 
-.links {
-  text-align: center;
-  margin: 30px 0;
+/* Chasing images */
+#peperun, #poopepeeat {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 10;
+  transition: transform 0.3s linear;
 }
 
-.links a {
-  text-decoration: none;
-  padding: 12px 24px;
-  margin: 10px;
-  background: #ff69b4;
-  color: white;
-  font-weight: bold;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: background 0.3s;
-}
+/* Responsive */
+@media (max-width: 600px) {
+  .main-banner {
+    width: 95%;
+  }
 
-.links a:hover {
-  background: #ff1493;
+  .instructions {
+    font-size: 16px;
+  }
+
+  .info {
+    font-size: 14px;
+  }
 }
