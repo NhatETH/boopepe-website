@@ -7,65 +7,48 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="avatar.png" alt="$BOOPEPE Avatar" class="avatar" />
-      <h1>$BOOPEPE</h1>
-      <p class="subtitle">The Meme God Chaser</p>
-      <div class="links">
-        <a href="https://x.com/BOOPEPExyz" target="_blank">X</a>
-        <a href="https://t.me/boopepeportal" target="_blank">Telegram</a>
-        <a href="#">Docs (Soon)</a>
-        <a href="#">Buy $BOOPEPE</a>
-      </div>
-    </header>
+  <header>
+    <img src="avatar.png" alt="BOOPEPE Avatar" class="avatar" />
+    <h1>$BOOPEPE</h1>
+    <p class="tagline">The Meme God Chaser</p>
+    <nav>
+      <a href="https://x.com" target="_blank">X</a>
+      <a href="https://t.me" target="_blank">Telegram</a>
+      <a href="#" target="_blank">Docs (Soon)</a>
+      <a href="https://boop.fun" target="_blank">Buy $BOOPEPE</a>
+    </nav>
+  </header>
 
-    <main>
-      <img src="main-banner.png" alt="Main Banner" class="main-banner" />
-    </main>
-  </div>
+  <section class="main-section">
+    <img src="main-banner.png" alt="Main Meme Banner" class="main-banner" />
+  </section>
 
-  <!-- Animated Meme Characters -->
-  <img src="peperun.png" class="character" id="peperun" alt="Pepe Running" />
-  <img src="poopepeeat.png" class="character" id="poopepeeat" alt="Poopepe Chasing" />
-  <audio id="bonk" src="bonk.mp3" preload="auto"></audio>
+  <footer>
+    <p>Made with 🧠 by BOOPEPE Labs</p>
+  </footer>
+
+  <audio id="bonk-sound" src="bonk.mp3" preload="auto"></audio>
+  <img id="poopepeeat" src="poopepeeat.png" alt="Poopepe Chaser" class="chaser" />
+  <img id="peperun" src="peperun.png" alt="Pepe Runner" class="runner" />
 
   <script>
-    const pepe = document.getElementById("peperun");
-    const poopepe = document.getElementById("poopepeeat");
-    const bonkSound = document.getElementById("bonk");
+    const pepe = document.getElementById('peperun');
+    const poopepe = document.getElementById('poopepeeat');
+    const bonkSound = document.getElementById('bonk-sound');
 
-    let pepeX = 100, pepeY = 100;
-    let poopepeX = 50, poopepeY = 50;
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      pepe.style.left = x + 'px';
+      pepe.style.top = y + 'px';
+      const dx = (x - poopepe.offsetLeft) * 0.02;
+      const dy = (y - poopepe.offsetTop) * 0.02;
+      poopepe.style.left = poopepe.offsetLeft + dx + 'px';
+      poopepe.style.top = poopepe.offsetTop + dy + 'px';
 
-    document.addEventListener("mousemove", (e) => {
-      pepeX = e.clientX;
-      pepeY = e.clientY;
+      const distance = Math.hypot(pepe.offsetLeft - poopepe.offsetLeft, pepe.offsetTop - poopepe.offsetTop);
+      if (distance < 50) bonkSound.play();
     });
-
-    function animate() {
-      const currentX = parseFloat(pepe.style.left) || 0;
-      const currentY = parseFloat(pepe.style.top) || 0;
-      const dx = pepeX - currentX;
-      const dy = pepeY - currentY;
-      pepe.style.left = currentX + dx * 0.2 + "px";
-      pepe.style.top = currentY + dy * 0.2 + "px";
-
-      const pX = parseFloat(poopepe.style.left) || 0;
-      const pY = parseFloat(poopepe.style.top) || 0;
-      const pdx = (parseFloat(pepe.style.left) || 0) - pX;
-      const pdy = (parseFloat(pepe.style.top) || 0) - pY;
-      poopepe.style.left = pX + pdx * 0.1 + "px";
-      poopepe.style.top = pY + pdy * 0.1 + "px";
-
-      const dist = Math.sqrt(pdx * pdx + pdy * pdy);
-      if (dist < 40) {
-        bonkSound.play();
-      }
-
-      requestAnimationFrame(animate);
-    }
-    animate();
   </script>
 </body>
 </html>
