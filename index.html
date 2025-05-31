@@ -1,114 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BOOPEPE</title>
   <style>
     body {
       margin: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
       background: linear-gradient(to bottom, #121212, #1a1a1a);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       color: white;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     header {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem;
     }
     header img {
       width: 120px;
       border-radius: 50%;
+      box-shadow: 0 0 20px #00ffff;
     }
-    h1 {
-      font-size: 2.8rem;
-      margin: 1rem 0;
-    }
-    section {
-      text-align: center;
-      margin: 2rem auto;
+    .main-banner {
+      display: block;
       max-width: 90%;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     }
-    section img {
-      max-width: 100%;
-      height: auto;
-      margin: 1rem 0;
-      border-radius: 16px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    }
-    .steps {
-      background: #222;
+    .instructions {
+      background: #1e1e1e;
+      max-width: 600px;
+      margin: 2rem auto;
       padding: 1.5rem;
       border-radius: 12px;
-      margin: 2rem auto;
-      max-width: 600px;
-    }
-    .steps h2 {
-      margin-bottom: 1rem;
-    }
-    .steps p {
-      margin: 0.6rem 0;
-    }
-    footer {
       text-align: center;
-      margin: 2rem 0;
+      font-size: 1.1rem;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     }
-    .icons {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      animation: scroll 30s linear infinite;
-      white-space: nowrap;
+    .instructions a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
     }
-    .icons img {
+    .chase {
+      position: absolute;
       width: 60px;
-      margin: 0 15px;
-      vertical-align: middle;
+      height: 60px;
+      background-size: cover;
+      z-index: 999;
     }
-    @keyframes scroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+    .footer {
+      text-align: center;
+      padding: 2rem;
     }
-    a {
-      color: #00ffcc;
+    .footer a {
+      color: #00ffff;
+      margin: 0 1rem;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="avatar.png" alt="BOOPEPE Avatar" />
-    <h1>$BOOPEPE</h1>
-    <p>The meme force chasing $PEPE to the moon</p>
+    <img src="avatar.png" alt="BOOPEPE Avatar">
+    <h1>Welcome to BOOPEPE</h1>
   </header>
 
-  <section>
-    <img src="meme.png" alt="Main Meme" />
-    <img src="rocket.png" alt="To the Moon" />
-    <img src="chasing.png" alt="Chasing Meme" />
-  </section>
+  <main>
+    <img src="main-banner.png" alt="Main Meme Banner" class="main-banner">
+    <div class="instructions">
+      <h2>How to Join the Movement</h2>
+      <p>Step 1: Visit <a href="https://boop.fun" target="_blank">Boop.fun</a></p>
+      <p>Step 2: Search <a href="#">BOOPEPE</a></p>
+      <p>Step 3: Boop hard. Boop fast. Boop together.</p>
+    </div>
+  </main>
 
-  <div class="steps">
-    <h2>How to Join the Movement</h2>
-    <p>Step 1: Visit <a href="https://boop.fun" target="_blank">Boop.fun</a></p>
-    <p>Step 2: Search <a href="https://boop.fun/token/boopepe" target="_blank">BOOPEPE</a></p>
-    <p>Step 3: Boop hard. Boop fast. Boop together.</p>
+  <div class="footer">
+    Follow us: <a href="https://x.com/BOOPEPExyz">X</a> | <a href="https://t.me/boopepeportal">Telegram</a>
   </div>
 
-  <footer>
-    <p>
-      Follow us: 
-      <a href="https://x.com/BOOPEPExyz" target="_blank">X</a> | 
-      <a href="https://t.me/boopepeportal" target="_blank">Telegram</a>
-    </p>
-  </footer>
+  <script>
+    const boopepe = document.createElement('div');
+    boopepe.className = 'chase';
+    boopepe.style.backgroundImage = 'url(boopepe-chase.png)';
+    document.body.appendChild(boopepe);
 
-  <div class="icons">
-    <img src="chasing.png" alt="Animation 1"/>
-    <img src="chasing.png" alt="Animation 2"/>
-    <img src="chasing.png" alt="Animation 3"/>
-  </div>
+    const pepe = document.createElement('div');
+    pepe.className = 'chase';
+    pepe.style.backgroundImage = 'url(avatar.png)';
+    document.body.appendChild(pepe);
+
+    function randomPos(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function moveChase() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      boopepe.style.left = randomPos(vw - 60) + 'px';
+      boopepe.style.top = randomPos(vh - 60) + 'px';
+      pepe.style.left = randomPos(vw - 60) + 'px';
+      pepe.style.top = randomPos(vh - 60) + 'px';
+    }
+
+    setInterval(moveChase, 1500);
+  </script>
 </body>
 </html>
