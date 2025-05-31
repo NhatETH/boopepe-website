@@ -1,73 +1,71 @@
-body {
-  margin: 0;
-  font-family: 'Comic Sans MS', sans-serif;
-  background: linear-gradient(to bottom right, #0f0f1a, #1a1a2e);
-  color: white;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOOPEPE - The Meme God Chaser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+<body>
+  <div class="container">
+    <header>
+      <img src="avatar.png" alt="BOOPEPE Avatar" class="avatar" />
+      <h1>$BOOPEPE</h1>
+      <p class="subtitle">The Meme God Chaser</p>
+    </header>
 
-.avatar {
-  width: 100px;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
+    <section class="cta">
+      <div class="info-box">
+        <p><strong>Contract Address:</strong></p>
+        <code class="ca">0x1234567890ABCDEF1234567890ABCDEF12345678</code>
+      </div>
+      <div class="links">
+        <a href="https://x.com/BOOPEPExyz" target="_blank">X</a>
+        <a href="https://t.me/boopepeportal" target="_blank">Telegram</a>
+        <a href="#" target="_blank" class="soon">Docs (Soon)</a>
+        <a href="https://boop.fun" target="_blank" class="boop-button">Buy $BOOPEPE</a>
+      </div>
+    </section>
 
-h1 {
-  font-size: 2.5rem;
-  margin: 0.5rem 0;
-}
+    <section class="main-banner">
+      <img src="main-banner.png" alt="Main Meme Banner" class="banner" />
+    </section>
+  </div>
 
-.subtitle {
-  color: #ccc;
-  margin-bottom: 1rem;
-  font-style: italic;
-}
+  <img src="poopepeeat.png" id="poopepeeat" class="runner" />
+  <img src="peperun.png" id="peperun" class="runner" />
 
-.links a {
-  margin: 0 0.75rem;
-  color: #00eaff;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
+  <audio id="bonkSound" src="bonk.mp3" preload="auto"></audio>
 
-.main-banner {
-  width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
+  <script>
+    const pepe = document.getElementById('peperun');
+    const poopepe = document.getElementById('poopepeeat');
+    const bonkSound = document.getElementById('bonkSound');
 
-.character {
-  position: fixed;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  z-index: 99;
-}
+    document.addEventListener('mousemove', (e) => {
+      pepe.style.left = `${e.clientX}px`;
+      pepe.style.top = `${e.clientY}px`;
+    });
 
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
-  }
+    function follow() {
+      const px = parseInt(pepe.style.left || 0);
+      const py = parseInt(pepe.style.top || 0);
+      const cx = parseInt(poopepe.style.left || 0);
+      const cy = parseInt(poopepe.style.top || 0);
+      const dx = (px - cx) * 0.05;
+      const dy = (py - cy) * 0.05;
 
-  .links a {
-    display: block;
-    margin: 0.5rem 0;
-  }
+      poopepe.style.left = `${cx + dx}px`;
+      poopepe.style.top = `${cy + dy}px`;
 
-  .main-banner {
-    border-radius: 0.5rem;
-  }
-}
+      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) bonkSound.play();
+
+      requestAnimationFrame(follow);
+    }
+    follow();
+  </script>
+</body>
+
+</html>
