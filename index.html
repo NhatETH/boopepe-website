@@ -3,42 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>$BOOPEPE</title>
+  <title>$BOOPEPE - Meme to the Moon</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Video Background -->
-  <video autoplay muted loop id="bg-video">
-    <source src="background.webm" type="video/webm" />
-  </video>
-
-  <!-- Main content -->
-  <div class="content">
-    <img src="avatar.png" alt="Avatar" class="avatar" />
-    <img src="main-banner.png" alt="Main Banner" class="main-banner" />
+  <div id="main-container">
+    <img src="https://i.postimg.cc/gc6S4NhW/Chat-GPT-Image-11-53-31-31-thg-5-2025.png" alt="Avatar" class="avatar"/>
+    <img src="https://i.postimg.cc/d1wXgdcB/Chat-GPT-Image-11-41-06-31-thg-5-2025.png" alt="Main Meme" class="main-meme"/>
+    <img src="https://i.postimg.cc/NjbpLn31/Chat-GPT-Image-11-53-48-31-thg-5-2025.png" alt="Rocket Launch" class="rocket"/>
 
     <div class="info">
-      <p><strong>Contract Address (CA):</strong> 0x000...123</p>
-      <p><strong>X:</strong> <a href="https://x.com/BOOPEPExyz" target="_blank">@BOOPEPExyz</a></p>
+      <h1>$BOOPEPE</h1>
+      <p><strong>CA:</strong> 0x1234...abcd</p>
+      <p><strong>X:</strong> <a href="https://x.com/BOOPEPExyz" target="_blank">x.com/BOOPEPExyz</a></p>
       <p><strong>Telegram:</strong> <a href="https://t.me/boopepeportal" target="_blank">t.me/boopepeportal</a></p>
-      <p><strong>Docs:</strong> <a href="#" target="_blank">Coming Soon</a></p>
+      <p><strong>Docs:</strong> (coming soon)</p>
     </div>
 
-    <div class="instructions">
-      <h2>How to Join the Movement</h2>
-      <p>Step 1: Visit Boop.fun</p>
-      <p>Step 2: Buy using CA: 0x000...123</p>
-      <p>Step 3: Boop hard. Boop fast. Boop together.</p>
-    </div>
+    <img id="pepe" src="peperun.png" class="character" />
+    <img id="poopepe" src="poopepeeat.png" class="character" />
+
+    <audio id="bonk" src="bonk.mp3" preload="auto"></audio>
   </div>
 
-  <!-- Animated chasers -->
-  <img id="peperun" src="peperun.png" />
-  <img id="poopepeeat" src="poopepeeat.png" />
+  <script>
+    const pepe = document.getElementById("pepe");
+    const poopepe = document.getElementById("poopepe");
+    const bonk = document.getElementById("bonk");
 
-  <!-- Sound effect -->
-  <audio id="bonkSound" src="bonk.mp3" preload="auto"></audio>
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      pepe.style.left = mouseX + "px";
+      pepe.style.top = mouseY + "px";
+    });
 
-  <script src="script.js"></script>
+    function chase() {
+      const px = parseFloat(poopepe.style.left) || 0;
+      const py = parseFloat(poopepe.style.top) || 0;
+      const dx = (mouseX - px) * 0.05;
+      const dy = (mouseY - py) * 0.05;
+
+      poopepe.style.left = px + dx + "px";
+      poopepe.style.top = py + dy + "px";
+
+      const distance = Math.hypot(mouseX - px, mouseY - py);
+      if (distance < 60) bonk.play();
+
+      requestAnimationFrame(chase);
+    }
+    chase();
+  </script>
 </body>
 </html>
