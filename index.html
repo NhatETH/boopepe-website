@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>$BOOPEPE - Meme to the Moon</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-  <div id="main-container">
-    <img src="https://i.postimg.cc/gc6S4NhW/Chat-GPT-Image-11-53-31-31-thg-5-2025.png" alt="Avatar" class="avatar"/>
-    <img src="https://i.postimg.cc/d1wXgdcB/Chat-GPT-Image-11-41-06-31-thg-5-2025.png" alt="Main Meme" class="main-meme"/>
-    <img src="https://i.postimg.cc/NjbpLn31/Chat-GPT-Image-11-53-48-31-thg-5-2025.png" alt="Rocket Launch" class="rocket"/>
-
-    <div class="info">
+  <div class="container">
+    <header>
+      <img src="https://i.postimg.cc/gc6S4NhW/Chat-GPT-Image-11-53-31-31-thg-5-2025.png" alt="BOOPEPE Avatar" class="logo" />
       <h1>$BOOPEPE</h1>
-      <p><strong>CA:</strong> 0x1234...abcd</p>
-      <p><strong>X:</strong> <a href="https://x.com/BOOPEPExyz" target="_blank">x.com/BOOPEPExyz</a></p>
-      <p><strong>Telegram:</strong> <a href="https://t.me/boopepeportal" target="_blank">t.me/boopepeportal</a></p>
-      <p><strong>Docs:</strong> (coming soon)</p>
-    </div>
+      <p class="tagline">The Meme You Can't Outrun</p>
+    </header>
 
-    <img id="pepe" src="peperun.png" class="character" />
-    <img id="poopepe" src="poopepeeat.png" class="character" />
+    <section class="media-section">
+      <img src="https://i.postimg.cc/d1wXgdcB/Chat-GPT-Image-11-41-06-31-thg-5-2025.png" alt="Main Meme" class="main-img" />
+      <img src="https://i.postimg.cc/NjbpLn31/Chat-GPT-Image-11-53-48-31-thg-5-2025.png" alt="Rocket Launch" class="main-img" />
+    </section>
 
+    <section class="info">
+      <h2>Project Info</h2>
+      <ul>
+        <li><strong>CA:</strong> 0x1234...abcd</li>
+        <li><strong>X:</strong> <a href="https://x.com/BOOPEPExyz" target="_blank">@BOOPEPExyz</a></li>
+        <li><strong>Telegram:</strong> <a href="https://t.me/boopepeportal" target="_blank">boopepeportal</a></li>
+        <li><strong>Docs:</strong> <em>Coming soon</em></li>
+      </ul>
+    </section>
+
+    <section class="howto">
+      <h2>How to Join</h2>
+      <ol>
+        <li>Go to <a href="https://boop.fun" target="_blank">boop.fun</a></li>
+        <li>Search "BOOPEPE" or use the CA above</li>
+        <li>Boop hard. Boop fast. Boop together.</li>
+      </ol>
+    </section>
+
+    <img id="pepe" src="peperun.png" class="character" alt="pepe run" />
+    <img id="poopepe" src="poopepeeat.png" class="character" alt="poopepe eat" />
     <audio id="bonk" src="bonk.mp3" preload="auto"></audio>
   </div>
 
@@ -56,4 +76,5 @@
     chase();
   </script>
 </body>
+
 </html>
