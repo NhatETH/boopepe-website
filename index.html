@@ -7,105 +7,116 @@
   <style>
     body {
       margin: 0;
+      font-family: "Comic Sans MS", cursive;
       background: linear-gradient(to bottom, #121212, #1a1a1a);
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       color: white;
       overflow: hidden;
     }
     header {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
     header img {
       width: 120px;
       border-radius: 50%;
-      box-shadow: 0 0 20px #00ffff;
     }
-    .main-banner {
+    .banner {
       display: block;
-      max-width: 90%;
-      margin: 0 auto;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      max-width: 100%;
+      margin: auto;
     }
-    .instructions {
-      background: #1e1e1e;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      border-radius: 12px;
+    .info {
       text-align: center;
+      margin-top: 2rem;
       font-size: 1.1rem;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     }
-    .instructions a {
+    .info a {
       color: #00ffff;
       text-decoration: none;
-      font-weight: bold;
     }
-    .chase {
+    .chase-zone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .chaser, .runner {
       position: absolute;
-      width: 60px;
-      height: 60px;
-      background-size: cover;
-      z-index: 999;
+      width: 80px;
+      transition: transform 0.1s linear;
     }
-    .footer {
-      text-align: center;
+    .popup-meme {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      color: black;
       padding: 2rem;
+      border-radius: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      z-index: 10000;
     }
-    .footer a {
-      color: #00ffff;
-      margin: 0 1rem;
-      text-decoration: none;
+    .popup-meme.show {
+      transform: translate(-50%, -50%) scale(1);
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="avatar.png" alt="BOOPEPE Avatar">
-    <h1>Welcome to BOOPEPE</h1>
+    <img src="avatar.png" alt="BOOPEPE Avatar" />
+    <h1>BOOPEPE</h1>
   </header>
-
-  <main>
-    <img src="main-banner.png" alt="Main Meme Banner" class="main-banner">
-    <div class="instructions">
-      <h2>How to Join the Movement</h2>
-      <p>Step 1: Visit <a href="https://boop.fun" target="_blank">Boop.fun</a></p>
-      <p>Step 2: Search <a href="#">BOOPEPE</a></p>
-      <p>Step 3: Boop hard. Boop fast. Boop together.</p>
-    </div>
-  </main>
-
-  <div class="footer">
-    Follow us: <a href="https://x.com/BOOPEPExyz">X</a> | <a href="https://t.me/boopepeportal">Telegram</a>
+  <img class="banner" src="main-banner.png" alt="Main Banner" />
+  <div class="info">
+    <p><strong>CA:</strong> 0x1234567890abcdef1234567890abcdef12345678</p>
+    <p><a href="https://x.com/BOOPEPExyz" target="_blank">X</a> | <a href="https://t.me/boopepeportal" target="_blank">Telegram</a> | <a href="#">Docs</a></p>
   </div>
 
+  <div class="chase-zone">
+    <img class="runner" src="peperun.png" alt="Pepe" id="pepe" />
+    <img class="chaser" src="poopepeeat.png" alt="Poopepe" id="poopepe" />
+  </div>
+
+  <div class="popup-meme" id="popup">BOOP! 🔊 Bonk!</div>
+  <audio id="bonk-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3a9d33d7e0.mp3"></audio>
+
   <script>
-    const boopepe = document.createElement('div');
-    boopepe.className = 'chase';
-    boopepe.style.backgroundImage = 'url(boopepe-chase.png)';
-    document.body.appendChild(boopepe);
+    const pepe = document.getElementById("pepe");
+    const poopepe = document.getElementById("poopepe");
+    const popup = document.getElementById("popup");
+    const sound = document.getElementById("bonk-sound");
 
-    const pepe = document.createElement('div');
-    pepe.className = 'chase';
-    pepe.style.backgroundImage = 'url(avatar.png)';
-    document.body.appendChild(pepe);
-
-    function randomPos(max) {
-      return Math.floor(Math.random() * max);
-    }
+    let x = 50;
+    let y = 50;
+    let direction = 1;
 
     function moveChase() {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      boopepe.style.left = randomPos(vw - 60) + 'px';
-      boopepe.style.top = randomPos(vh - 60) + 'px';
-      pepe.style.left = randomPos(vw - 60) + 'px';
-      pepe.style.top = randomPos(vh - 60) + 'px';
+      x += direction * 2;
+      if (x > window.innerWidth - 100 || x < 0) {
+        direction *= -1;
+        y = Math.random() * (window.innerHeight - 100);
+      }
+
+      pepe.style.transform = `translate(${x}px, ${y}px)`;
+      poopepe.style.transform = `translate(${x - 60}px, ${y}px)`;
+
+      if (Math.abs(x - (x - 60)) < 10) triggerBonk();
+
+      requestAnimationFrame(moveChase);
     }
 
-    setInterval(moveChase, 1500);
+    function triggerBonk() {
+      sound.play();
+      popup.classList.add("show");
+      setTimeout(() => popup.classList.remove("show"), 1000);
+    }
+
+    moveChase();
   </script>
 </body>
 </html>
