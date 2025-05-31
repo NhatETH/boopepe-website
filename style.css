@@ -1,37 +1,105 @@
+/* style.css mới cho trang web BOOPEPE */
+
 body {
   margin: 0;
-  padding: 0;
-  background: #000;
-  font-family: sans-serif;
-  color: #fff;
-  overflow-y: scroll;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #000010, #1a1a2e);
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-#main-container {
-  padding: 40px;
+header {
   text-align: center;
+  padding: 40px 20px 20px 20px;
 }
 
-.avatar {
-  width: 100px;
+header img {
+  width: 120px;
   border-radius: 50%;
+  margin-bottom: 20px;
 }
 
-.main-meme, .rocket {
-  width: 80%;
-  max-width: 600px;
-  margin-top: 20px;
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #00f0ff;
+}
+
+p {
+  font-size: 1.2em;
+  color: #cccccc;
+}
+
+.main-banner {
+  display: block;
+  max-width: 90%;
+  margin: 40px auto;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 .info {
-  margin-top: 30px;
-  font-size: 16px;
+  text-align: center;
+  margin: 40px 20px;
+}
+
+.info a {
+  display: block;
+  color: #00f0ff;
+  font-weight: bold;
+  margin: 10px 0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.info a:hover {
+  color: #ff00aa;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#game-container {
+  position: relative;
+  z-index: 2;
 }
 
 .character {
   position: absolute;
-  width: 80px;
-  transition: 0.05s;
-  pointer-events: none;
-  z-index: 999;
+  width: 64px;
+  height: 64px;
+  transition: transform 0.1s linear;
+  z-index: 3;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.9em;
+  color: #777;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  .main-banner {
+    width: 95%;
+  }
+
+  .character {
+    width: 48px;
+    height: 48px;
+  }
 }
