@@ -3,87 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOOPEPE | Meme Revolution</title>
+  <title>$BOOPEPE - Meme Revolution</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="wrapper">
-    <header class="hero">
-      <img src="avatar.png" alt="BOOPEPE Avatar" class="avatar" />
-      <div class="hero-text">
-        <h1>$BOOPEPE</h1>
-        <p>The intergalactic meme chase begins 🚀</p>
-      </div>
-    </header>
+  <header class="hero">
+    <img src="avatar.png" alt="$BOOPEPE Avatar" class="avatar" />
+    <h1 class="title">$BOOPEPE</h1>
+    <p class="tagline">The Meme God Chaser</p>
+    <div class="links">
+      <a href="https://x.com/BOOPEPExyz" target="_blank">X</a>
+      <a href="https://t.me/boopepeportal" target="_blank">Telegram</a>
+      <a href="#" target="_blank">Docs (Soon)</a>
+      <a href="#" target="_blank">Buy $BOOPEPE</a>
+    </div>
+  </header>
 
-    <section class="main-banner">
-      <img src="main.png" alt="BOOPEPE Main Banner" class="main-image" />
-    </section>
+  <main>
+    <img src="main-banner.png" alt="$BOOPEPE Main Banner" class="main-banner" />
+  </main>
 
-    <section class="info">
-      <h2>Project Info</h2>
-      <ul>
-        <li><strong>Contract Address:</strong> <span class="copy">0x123...boop</span></li>
-        <li><strong>X (Twitter):</strong> <a href="https://x.com/BOOPEPExyz" target="_blank">@BOOPEPExyz</a></li>
-        <li><strong>Telegram:</strong> <a href="https://t.me/boopepeportal" target="_blank">boopepeportal</a></li>
-        <li><strong>Docs:</strong> <a href="#" target="_blank">Coming Soon</a></li>
-      </ul>
-    </section>
+  <footer>
+    <p>Contract Address: <code>0x1234567890abcdef...</code></p>
+    <p>© 2025 BOOPEPE. All Rights Reserved.</p>
+  </footer>
 
-    <section class="how-to">
-      <h2>How to Join the Movement</h2>
-      <ol>
-        <li>Go to <a href="https://boop.fun" target="_blank">boop.fun</a></li>
-        <li>Search for "$BOOPEPE"</li>
-        <li>Boop hard. Boop fast. Boop together.</li>
-      </ol>
-    </section>
+  <!-- Animated Runners -->
+  <img src="peperun.png" id="peperun" class="runner" />
+  <img src="poopepeeat.png" id="poopepeeat" class="runner" />
 
-    <footer>
-      <p>Made with ❤️ by Meme Masters</p>
-    </footer>
-  </div>
-
-  <img src="peperun.png" id="pepe" class="runner" alt="Pepe running" />
-  <img src="poopepeeat.png" id="poopepe" class="chaser" alt="BOOPEPE chasing" />
   <audio id="bonkSound" src="bonk.mp3"></audio>
 
   <script>
-    const pepe = document.getElementById("pepe");
-    const poopepe = document.getElementById("poopepe");
-    const sound = document.getElementById("bonkSound");
+    const pepe = document.getElementById("peperun");
+    const poopepe = document.getElementById("poopepeeat");
+    const bonkSound = document.getElementById("bonkSound");
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let x = 100;
-    let y = 100;
-    let chaseX = 50;
-    let chaseY = 50;
+    let mouseX = 0, mouseY = 0;
 
     document.addEventListener("mousemove", (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
     });
 
-    function moveCharacters() {
-      x += (mouseX - x) * 0.1;
-      y += (mouseY - y) * 0.1;
-      chaseX += (x - chaseX) * 0.08;
-      chaseY += (y - chaseY) * 0.08;
+    function movePepe() {
+      const rect = pepe.getBoundingClientRect();
+      const dx = mouseX - rect.left;
+      const dy = mouseY - rect.top;
+      pepe.style.left = rect.left + dx * 0.05 + "px";
+      pepe.style.top = rect.top + dy * 0.05 + "px";
 
-      pepe.style.transform = `translate(${x}px, ${y}px)`;
-      poopepe.style.transform = `translate(${chaseX}px, ${chaseY}px)`;
+      const px = parseFloat(pepe.style.left) || 0;
+      const py = parseFloat(pepe.style.top) || 0;
+      const dx2 = px - (parseFloat(poopepe.style.left) || 0);
+      const dy2 = py - (parseFloat(poopepe.style.top) || 0);
+      poopepe.style.left = (parseFloat(poopepe.style.left) || 0) + dx2 * 0.04 + "px";
+      poopepe.style.top = (parseFloat(poopepe.style.top) || 0) + dy2 * 0.04 + "px";
 
-      const distance = Math.hypot(chaseX - x, chaseY - y);
-      if (distance < 50) {
-        sound.play();
-      }
+      // Distance to trigger bonk
+      const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+      if (dist < 50) bonkSound.play();
 
-      requestAnimationFrame(moveCharacters);
+      requestAnimationFrame(movePepe);
     }
 
-    moveCharacters();
+    // Initial position
+    pepe.style.position = "absolute";
+    pepe.style.left = "300px";
+    pepe.style.top = "300px";
+
+    poopepe.style.position = "absolute";
+    poopepe.style.left = "100px";
+    poopepe.style.top = "100px";
+
+    movePepe();
   </script>
 </body>
 </html>
