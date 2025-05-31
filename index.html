@@ -3,140 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOOPEPE - Meme to the Moon</title>
+  <title>BOOPEPE</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(#f8f8f8, #fff);
-      overflow-x: hidden;
-    }
-    header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-    }
-    header img {
-      width: 120px;
-      border-radius: 50%;
-    }
-    main {
-      padding: 1rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    .banner {
+      padding: 0;
+      overflow: hidden;
       width: 100%;
-      border-radius: 1rem;
-      margin-bottom: 2rem;
+      height: 100%;
+      font-family: 'Comic Sans MS', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200vh;
+      overflow-y: scroll;
+      padding: 2rem;
+      box-sizing: border-box;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+    }
+    img.avatar, img.banner {
+      display: block;
+      margin: 1rem auto;
+      max-width: 300px;
+      border-radius: 50%;
     }
     .info {
       text-align: center;
       font-size: 1.2rem;
-      margin-bottom: 2rem;
     }
-    .info a {
-      color: #0077ff;
-      text-decoration: none;
-    }
-    .steps {
-      background: #fffbe6;
-      padding: 1rem;
-      border-radius: 1rem;
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .meme-chase {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      z-index: 1000;
+    .runner, .chaser {
       width: 80px;
-      animation: chase 10s linear infinite;
-    }
-    .meme-run {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      z-index: 999;
-      width: 60px;
-      animation: run 10s linear infinite;
-    }
-    @keyframes chase {
-      0% { left: -100px; top: 40%; }
-      50% { left: 50vw; top: 45%; }
-      100% { left: 100vw; top: 50%; }
-    }
-    @keyframes run {
-      0% { left: -50px; top: 43%; }
-      50% { left: 48vw; top: 47%; }
-      100% { left: 95vw; top: 52%; }
+      position: absolute;
+      z-index: 10;
     }
     .popup {
-      position: fixed;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #ffcc00;
-      color: #000;
+      position: absolute;
+      background: yellow;
+      color: red;
       font-weight: bold;
-      padding: 1rem 2rem;
-      border-radius: 1rem;
-      font-size: 2rem;
-      display: none;
-      z-index: 2000;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 5px 10px;
+      border-radius: 10px;
+      animation: pop 1s ease forwards;
+    }
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="avatar.png" alt="BOOPEPE Avatar" />
-  </header>
-  <main>
-    <img src="main-banner.png" alt="BOOPEPE Banner" class="banner" />
-    <div class="info">
-      <p><strong>Contract Address (CA):</strong> 0x1234...boop</p>
-      <p><a href="https://x.com/BOOPEPExyz" target="_blank">X (Twitter)</a> | <a href="https://t.me/boopepeportal" target="_blank">Telegram</a> | <a href="#">Docs (coming soon)</a></p>
-    </div>
-    <div class="steps">
-      <h3>How to Join the Movement</h3>
-      <ol>
-        <li>Visit <a href="https://boop.fun">Boop.fun</a></li>
-        <li>Search “BOOPEPE” or paste CA above</li>
-        <li>Boop hard. Boop fast. Boop together!</li>
-      </ol>
-    </div>
-  </main>
-  <img src="poopepeeat.png" alt="BOOPEPE" class="meme-chase" id="chaser" />
-  <img src="peperun.png" alt="PEPE" class="meme-run" id="runner" />
-  <div class="popup" id="popup">BOOP!</div>
   <audio id="bonkSound" src="bonk.mp3"></audio>
-
+  <img src="peperun.png" class="runner" id="runner" style="top: 50px; left: 50px" />
+  <img src="poopepeeat.png" class="chaser" id="chaser" style="top: 100px; left: 100px" />
+  <div class="container">
+    <img src="avatar.png" alt="Avatar" class="avatar" />
+    <img src="main-banner.png" alt="Main Banner" class="banner" />
+    <div class="info">
+      <p><strong>Contract Address (CA):</strong> 0x123456789abcdef</p>
+      <p><strong>Twitter/X:</strong> <a href="https://x.com/BOOPEPExyz" target="_blank">@BOOPEPExyz</a></p>
+      <p><strong>Telegram:</strong> <a href="https://t.me/boopepeportal" target="_blank">t.me/boopepeportal</a></p>
+      <p><strong>Docs:</strong> <a href="#" target="_blank">Coming soon</a></p>
+    </div>
+  </div>
   <script>
-    const chaser = document.getElementById('chaser');
     const runner = document.getElementById('runner');
-    const popup = document.getElementById('popup');
-    const sound = document.getElementById('bonkSound');
+    const chaser = document.getElementById('chaser');
+    const bonkSound = document.getElementById('bonkSound');
 
-    function checkCollision() {
-      const chaseRect = chaser.getBoundingClientRect();
-      const runRect = runner.getBoundingClientRect();
-      const overlap = !(
-        chaseRect.right < runRect.left ||
-        chaseRect.left > runRect.right ||
-        chaseRect.bottom < runRect.top ||
-        chaseRect.top > runRect.bottom
-      );
-      if (overlap) {
-        popup.style.display = 'block';
-        sound.play();
-        setTimeout(() => popup.style.display = 'none', 1000);
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    let rx = 50, ry = 50;
+    let cx = 100, cy = 100;
+
+    function move() {
+      // runner moves toward mouse
+      rx += (mouseX - rx) * 0.05;
+      ry += (mouseY - ry) * 0.05;
+      runner.style.left = rx + 'px';
+      runner.style.top = ry + 'px';
+
+      // chaser follows runner
+      cx += (rx - cx) * 0.03;
+      cy += (ry - cy) * 0.03;
+      chaser.style.left = cx + 'px';
+      chaser.style.top = cy + 'px';
+
+      const dx = rx - cx;
+      const dy = ry - cy;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 40) {
+        bonkSound.play();
+        const pop = document.createElement('div');
+        pop.classList.add('popup');
+        pop.style.left = (rx + 20) + 'px';
+        pop.style.top = (ry - 10) + 'px';
+        pop.innerText = 'BOOP!';
+        document.body.appendChild(pop);
+        setTimeout(() => document.body.removeChild(pop), 1000);
       }
+
+      requestAnimationFrame(move);
     }
 
-    setInterval(checkCollision, 500);
+    move();
   </script>
 </body>
 </html>
