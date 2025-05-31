@@ -1,15 +1,37 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: sans-serif;
+  color: #fff;
+  overflow-y: scroll;
+}
 
-const pepe = document.getElementById("pepe");
-const boopepe = document.getElementById("boopepe");
-const bonk = document.getElementById("bonkSound");
+#main-container {
+  padding: 40px;
+  text-align: center;
+}
 
-document.addEventListener("mousemove", (e) => {
-  pepe.style.left = e.pageX + "px";
-  pepe.style.top = e.pageY + "px";
+.avatar {
+  width: 100px;
+  border-radius: 50%;
+}
 
-  setTimeout(() => {
-    boopepe.style.left = e.pageX - 100 + "px";
-    boopepe.style.top = e.pageY - 100 + "px";
-    bonk.play();
-  }, 300);
-});
+.main-meme, .rocket {
+  width: 80%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.info {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.character {
+  position: absolute;
+  width: 80px;
+  transition: 0.05s;
+  pointer-events: none;
+  z-index: 999;
+}
