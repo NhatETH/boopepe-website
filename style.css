@@ -1,105 +1,136 @@
-/* ===== Base Reset ===== */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
+
 body {
-  font-family: 'Comic Sans MS', sans-serif;
-  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  font-family: 'Arial', sans-serif;
+  background: radial-gradient(ellipse at top, #0d0d0d, #000000);
   color: #ffffff;
   overflow-x: hidden;
-  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: 60px;
 }
 
-/* ===== Header ===== */
 header {
   text-align: center;
-  padding: 2rem 1rem 1.5rem;
+  padding: 30px 20px 10px;
 }
+
 .avatar {
-  width: 72px;
-  height: 72px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: 2px solid #00f0ff;
-  margin-bottom: 0.7rem;
+  border: 4px solid #fff;
+  box-shadow: 0 0 15px #ff00cc;
+  margin-bottom: 20px;
 }
+
 h1 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
+  color: #ffcc00;
+  margin-bottom: 8px;
 }
+
 .tagline {
-  font-size: 1.1rem;
-  color: #bbbbbb;
-  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 20px;
 }
 
-/* ===== Navigation ===== */
 nav {
-  margin-top: 1rem;
-}
-nav a {
-  margin: 0 0.8rem;
-  color: #00e5ff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-nav a:hover {
-  text-decoration: underline;
+  margin-top: 10px;
 }
 
-/* ===== Main Content ===== */
-.main-section {
-  padding: 2rem 1rem;
-  text-align: center;
+nav a {
+  margin: 0 10px;
+  color: #00ffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
 }
+
+nav a:hover {
+  color: #ff00cc;
+}
+
+.contract-address {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  color: #ffeb3b;
+}
+
+.main-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 20px;
+}
+
 .main-banner {
-  max-width: 420px;
-  width: 90%;
+  max-width: 100%;
   height: auto;
   border-radius: 16px;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
-  margin: 0 auto;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
 }
 
-/* ===== Meme Animation Characters ===== */
-.runner, .chaser {
-  position: fixed;
-  width: 48px;
-  height: 48px;
-  pointer-events: none;
-  z-index: 1000;
-  transition: transform 0.08s ease-out;
-}
-
-/* ===== Footer ===== */
 footer {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 30px 10px;
   font-size: 0.9rem;
-  color: #999;
+  color: #aaa;
 }
 
-/* ===== Responsive Design ===== */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.6rem;
+.runner, .chaser {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    width: 150px;
+    height: 150px;
   }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .main-banner {
+    max-width: 700px;
+  }
+
+  .runner, .chaser {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
   .tagline {
     font-size: 1rem;
   }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+  }
+
   nav a {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
-  .avatar {
-    width: 60px;
-    height: 60px;
-  }
-  .main-banner {
-    max-width: 90%;
-  }
-  .runner, .chaser {
-    width: 36px;
-    height: 36px;
+
+  .main-section {
+    margin: 20px 10px;
   }
 }
